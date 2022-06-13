@@ -17,9 +17,15 @@ export const Formulario = ({
   setDecimal,
 }) => {
   const [resultado, setResultado] = useState(null);
+  const regex = /^[0-1]*$/
   const handleSubmit = () => {
     let sum = 0;
-    if (decimal === null || decimal != 1 && decimal != 0) {
+    const onlyNumber = regex.test(decimal);
+    if (decimal === null) {
+      Alert.alert('ERROR', 'Ingrese un numero');
+      return;
+    }
+    if (!onlyNumber) {
       Alert.alert('ERROR', 'Numero incorrecto ingrese 0 o 1');
       return;
     }
